@@ -4,17 +4,36 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import styles from '../styles/Home.module.css'
 
+const ImageContainer = (props) => {
+  return <div style={{ position: 'fixed', top: 0, height: 796 }}>{props.children}</div>
+}
+
+
+
 const Home: NextPage = () => {
   const [ scrollY, setScrollY ] = useState(0)
+  const [ windowHeight, setWindowHeight ] = useState(0)
+  const [ windowWidth, setWindowWidth ] = useState(0)
+  const [ imageHeight, setImageHeight ] = useState(0)
   
   function handleScroll(): void {
     setScrollY(window.scrollY);
   }
 
+  function handleResize(): void {
+      setWindowHeight(window.innerHeight);
+      setWindowWidth(window.innerWidth)
+    }
+
   useEffect(() => {
       document.addEventListener('scroll', handleScroll, {
           passive: true
         })
+      window.addEventListener('resize', handleResize, {
+          passive: true
+        })
+      
+      handleResize()
     }, [])
 
   return (
@@ -25,9 +44,17 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <div style={{height: 2000}}>{scrollY}</div>
+        <div style={{height: 2000, display: 'flex', flexDirection: 'column', zIndex: 1}}>
+          <text>{scrollY}</text>
+          <text>{windowHeight}</text>
+        </div>
+        <ImageContainer>
+          <Image src="/david-van-dijk-3LTht2nxd34-unsplash.jpg" height={windowHeight} width={windowWidth} objectFit='cover' objectPosition="center top" alt="background"/>
+        </ImageContainer>
+        <ImageContainer>
+          <Image src="/sebastian-svenson-d2w-_1LJioQ-unsplash.jpg" height={Math.min(scrollY, windowHeight)} width={windowWidth} objectFit='cover' objectPosition="center top" alt="background"/>
+        </ImageContainer>
       </main>
-
       <footer className={styles.footer}>
         <a
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
