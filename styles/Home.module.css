@@ -111,3 +111,7 @@
     flex-direction: column;
   }
 }
+
+.background-image {
+  position: fixed;
+}

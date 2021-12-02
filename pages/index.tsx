@@ -5,20 +5,17 @@ import { useEffect, useState } from 'react'
 import styles from '../styles/Home.module.css'
 
 const ImageContainer = (props) => {
-  return <div style={{ position: 'fixed', top: 0, height: 796 }}>{props.children}</div>
+  return <div style={{ position: 'fixed', bottom: 0, height: props.height, overflow: 'hidden' }}>{props.children}</div>
 }
-
-
 
 const Home: NextPage = () => {
   const [ scrollY, setScrollY ] = useState(0)
   const [ windowHeight, setWindowHeight ] = useState(0)
   const [ windowWidth, setWindowWidth ] = useState(0)
-  const [ imageHeight, setImageHeight ] = useState(0)
   
   function handleScroll(): void {
-    setScrollY(window.scrollY);
-  }
+      setScrollY(window.scrollY)
+    }
 
   function handleResize(): void {
       setWindowHeight(window.innerHeight);
@@ -26,9 +23,10 @@ const Home: NextPage = () => {
     }
 
   useEffect(() => {
-      document.addEventListener('scroll', handleScroll, {
+      window.addEventListener('scroll', handleScroll, {
           passive: true
         })
+
       window.addEventListener('resize', handleResize, {
           passive: true
         })
@@ -44,16 +42,17 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <div style={{height: 2000, display: 'flex', flexDirection: 'column', zIndex: 1}}>
-          <text>{scrollY}</text>
-          <text>{windowHeight}</text>
+        <div style={{height: windowHeight*3, display: 'flex', flexDirection: 'column', zIndex: 1}}>
         </div>
-        <ImageContainer>
-          <Image src="/david-van-dijk-3LTht2nxd34-unsplash.jpg" height={windowHeight} width={windowWidth} objectFit='cover' objectPosition="center top" alt="background"/>
-        </ImageContainer>
-        <ImageContainer>
-          <Image src="/sebastian-svenson-d2w-_1LJioQ-unsplash.jpg" height={Math.min(scrollY, windowHeight)} width={windowWidth} objectFit='cover' objectPosition="center top" alt="background"/>
-        </ImageContainer>
+        <div style={{ position: 'fixed', bottom: 0, height: Math.max(0, windowHeight), overflow: 'hidden' }}>
+          <Image src="/david-van-dijk-3LTht2nxd34-unsplash.jpg" layout="fixed" height={windowHeight} width={windowWidth} objectFit='cover' objectPosition="center top" alt="background"/>
+        </div>
+        <div style={{ position: 'fixed', bottom: 0, height: Math.max(0, scrollY), overflow: 'hidden' }}>
+          <Image src="/sebastian-svenson-d2w-_1LJioQ-unsplash.jpg" layout="fixed" height={windowHeight} width={windowWidth} objectFit='cover' objectPosition="center top" alt="background"/>
+        </div>
+        <div style={{ position: 'fixed', bottom: 0, height: Math.max(0, scrollY-windowHeight), overflow: 'hidden' }}>
+          <Image src="/david-van-dijk-3LTht2nxd34-unsplash.jpg" layout="fixed" height={windowHeight} width={windowWidth} objectFit='cover' objectPosition="center top" alt="background"/>
+        </div>
       </main>
       <footer className={styles.footer}>
         <a
