@@ -1,11 +1,10 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
 import { EmptyWallet, Verify, Edit, KeyboardOpen } from "iconsax-react";
 import { useBudouX } from "../hooks/useBudouX";
-import { maxHeaderSize } from "http";
 
 const ImageContainer = (props) => {
   return (
@@ -21,6 +20,20 @@ const ImageContainer = (props) => {
     </div>
   );
 };
+
+const MemoImage = React.memo((props) => {
+  return (
+    <Image
+      src={props.imageUrl}
+      layout="fixed"
+      height={props.windowHeight}
+      width={props.windowWidth}
+      objectFit="cover"
+      objectPosition="center top"
+      alt="background"
+    />
+  )
+})
 
 const Home: NextPage = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -499,15 +512,7 @@ const Home: NextPage = () => {
             overflow: "hidden",
           }}
         >
-          <Image
-            src="/philipp-katzenberger-iIJrUoeRoCQ-unsplash.jpg"
-            layout="fixed"
-            height={windowHeight}
-            width={windowWidth}
-            objectFit="cover"
-            objectPosition="center top"
-            alt="background"
-          />
+          <MemoImage imageUrl="/philipp-katzenberger-iIJrUoeRoCQ-unsplash.jpg" windowHeight={windowHeight} windowWidth={windowWidth}/>
         </div>
         <div
           style={{
@@ -517,15 +522,7 @@ const Home: NextPage = () => {
             overflow: "hidden",
           }}
         >
-          <Image
-            src="/darryl-brian-bDn1Wi1ixLw-unsplash.jpg"
-            layout="fixed"
-            height={windowHeight}
-            width={windowWidth}
-            objectFit="cover"
-            objectPosition="center top"
-            alt="background"
-          />
+          <MemoImage imageUrl="/darryl-brian-bDn1Wi1ixLw-unsplash.jpg" windowHeight={windowHeight} windowWidth={windowWidth}/>
         </div>
         <div
           style={{
@@ -535,15 +532,7 @@ const Home: NextPage = () => {
             overflow: "hidden",
           }}
         >
-          <Image
-            src="/artur-aldyrkhanov-3bwMp-TyxOE-unsplash.jpg"
-            layout="fixed"
-            height={windowHeight}
-            width={windowWidth}
-            objectFit="cover"
-            objectPosition="center top"
-            alt="background"
-          />
+          <MemoImage imageUrl="/artur-aldyrkhanov-3bwMp-TyxOE-unsplash.jpg" windowHeight={windowHeight} windowWidth={windowWidth}/>
         </div>
         <div
           style={{
@@ -553,15 +542,7 @@ const Home: NextPage = () => {
             overflow: "hidden",
           }}
         >
-          <Image
-            src="/david-van-dijk-3LTht2nxd34-unsplash.jpg"
-            layout="fixed"
-            height={windowHeight}
-            width={windowWidth}
-            objectFit="cover"
-            objectPosition="center top"
-            alt="background"
-          />
+          <MemoImage imageUrl="/david-van-dijk-3LTht2nxd34-unsplash.jpg" windowHeight={windowHeight} windowWidth={windowWidth}/>
         </div>
         <div
           style={{
@@ -571,15 +552,8 @@ const Home: NextPage = () => {
             overflow: "hidden",
           }}
         >
-          <Image
-            src="/sebastian-svenson-LpbyDENbQQg-unsplash.jpg"
-            layout="fixed"
-            height={windowHeight}
-            width={windowWidth}
-            objectFit="cover"
-            objectPosition="center top"
-            alt="background"
-          />
+          <div style={{position: 'absolute', zIndex: 1, height: '100%', width: '100%'}}><text style={{ color: 'white', position: 'absolute', bottom: 150}}>test</text></div>
+          <MemoImage imageUrl="/sebastian-svenson-LpbyDENbQQg-unsplash.jpg" windowHeight={windowHeight} windowWidth={windowWidth}/>
         </div>
       </main>
     </div>
