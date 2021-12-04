@@ -23,15 +23,18 @@ const ImageContainer = (props) => {
 
 const MemoImage = React.memo((props) => {
   return (
-    <Image
-      src={props.imageUrl}
-      layout="fixed"
-      height={props.windowHeight}
-      width={props.windowWidth}
-      objectFit="cover"
-      objectPosition="center top"
-      alt="background"
-    />
+    <div>
+      <div style={{ backgroundColor: "rgba(0, 0, 0, 0.5)", height: props.windowHeight, width: props.windowWidth, position: 'absolute', zIndex: 1 }} />
+      <Image
+        src={props.imageUrl}
+        layout="fixed"
+        height={props.windowHeight}
+        width={props.windowWidth}
+        objectFit="cover"
+        objectPosition="center top"
+        alt="background"
+      />
+   </div>
   )
 })
 
@@ -110,46 +113,335 @@ const Home: NextPage = () => {
             width: "100%",
             display: "flex",
             flexDirection: "column",
-            zIndex: 1,
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            zIndex: 2,
           }}
         >
-          {/* window 1 */}
-          <div
+        </div>
+        <div
+          style={{
+            position: "fixed",
+            height: 250,
+            width: "100%",
+            bottom: 0,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "black",
+          }}
+        >
+          <text
             style={{
-              height: windowHeight,
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              opacity: Math.min(
-                Math.max(
-                  1 - scrollY * 2 / windowHeight,
-                  0
-                ),
-              1)
+              fontSize: 24,
+              fontWeight: "bold",
+              color: "white",
+              fontFamily: "Shippori Mincho, serif",
             }}
           >
-            <text
-              style={{
-                fontSize: 40,
-                fontWeight: "bold",
-                color: "white",
-                fontFamily: "Shippori Mincho, serif",
-              }}
-            >
-              ホームページ作成、どこも高くない？
-            </text>
-          </div>
-          {/* window 2 */}
+            SUGOI株式会社
+          </text>
+        </div>
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            height: Math.max(0, windowHeight * 5 - scrollY),
+            overflow: "hidden",
+          }}
+        >
           <div
             style={{
+              position: 'absolute',
+              zIndex: 2,
               height: windowHeight,
               width: windowWidth * 0.5,
               display: "flex",
               flexDirection: "column",
               justifyContent: "end",
               alignItems: "start",
-              marginLeft:
+              alignSelf: "end",
+              right: 
+                150 -
+                Math.min(
+                  Math.max(
+                    (scrollY - windowHeight * 3.75) / (windowHeight * 0.25),
+                    0
+                  ),
+                  1
+                ) * 100,
+              bottom: 150,
+              opacity: Math.min(
+                Math.max(
+                  (scrollY - windowHeight * 3.75) / (windowHeight * 0.5),
+                  0
+                ),
+                1
+              ),
+            }}
+          >
+            <div style={{ marginBottom: 10 }}>
+              <KeyboardOpen size="24" color="white" />
+              <text
+                style={{
+                  fontSize: 20,
+                  fontWeight: "normal",
+                  color: "white",
+                  fontFamily: "Shippori Mincho, serif",
+                  marginLeft: 10,
+                }}
+              >
+                ホームページに限りません
+              </text>
+            </div>
+            <text
+              style={{
+                fontSize: 32,
+                fontWeight: "normal",
+                color: "white",
+                fontFamily: "Shippori Mincho, serif",
+                marginBottom: 20,
+              }}
+            >
+              {parse("モバイルアプリやECサイトなども、ご相談ください")}
+            </text>
+            <text
+              style={{
+                fontSize: 16,
+                fontWeight: "normal",
+                color: "white",
+                fontFamily: "Shippori Mincho, serif",
+              }}
+            >
+              {parse(
+                "ホームページを作り、集客がうまくいき、専用のモバイルアプリやECサイトが作りたくなるかもしれません。そんなときも、私達に任せてください。"
+              )}
+            </text>
+            <text
+              style={{
+                fontSize: 16,
+                fontWeight: "normal",
+                color: "white",
+                fontFamily: "Shippori Mincho, serif",
+              }}
+            >
+              {parse(
+                "モバイルアプリ開発やECサイト制作の経験のある、私達のデザイナーやエンジニアが、あなたのビジネスを加速させるお手伝いをいたします。"
+              )}
+            </text>
+          </div>
+
+          <MemoImage imageUrl="/philipp-katzenberger-iIJrUoeRoCQ-unsplash.jpg" windowHeight={windowHeight} windowWidth={windowWidth}/>
+        </div>
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            height: Math.max(0, windowHeight * 4 - scrollY),
+            overflow: "hidden",
+          }}
+        >
+          <div
+            style={{
+              position: 'absolute',
+              zIndex: 2,
+              height: windowHeight,
+              width: windowWidth * 0.5,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "end",
+              alignItems: "start",
+              alignSelf: "start",
+              left: 
+                150 -
+                Math.min(
+                  Math.max(
+                    (scrollY - windowHeight * 2.75) / (windowHeight * 0.25),
+                    0
+                  ),
+                  1
+                ) * 100,
+              bottom: 150,
+              opacity: Math.min(
+                Math.max(
+                  (scrollY - windowHeight * 2.75) / (windowHeight * 0.5),
+                  0
+                ),
+                1
+              ),
+            }}
+          >
+            <div style={{ marginBottom: 10 }}>
+              <Edit size="24" color="white" />
+              <text
+                style={{
+                  fontSize: 20,
+                  fontWeight: "normal",
+                  color: "white",
+                  fontFamily: "Shippori Mincho, serif",
+                  marginLeft: 10,
+                }}
+              >
+                自由に内容を編集できる
+              </text>
+            </div>
+            <text
+              style={{
+                fontSize: 32,
+                fontWeight: "normal",
+                color: "white",
+                fontFamily: "Shippori Mincho, serif",
+                marginBottom: 20,
+              }}
+            >
+              {parse("あなた自身で、ホームページの内容を編集できます。")}
+            </text>
+            <text
+              style={{
+                fontSize: 16,
+                fontWeight: "normal",
+                color: "white",
+                fontFamily: "Shippori Mincho, serif",
+              }}
+            >
+              {parse(
+                "ホームページの内容を、あなた自身で、簡単に編集することが可能です。"
+              )}
+            </text>
+            <text
+              style={{
+                fontSize: 16,
+                fontWeight: "normal",
+                color: "white",
+                fontFamily: "Shippori Mincho, serif",
+              }}
+            >
+              {parse(
+                "ブログのように、コンテンツを追加していくことで、ますますあなたらしく、ホームページを彩ってください。"
+              )}
+            </text>
+            <text
+              style={{
+                fontSize: 16,
+                fontWeight: "normal",
+                color: "white",
+                fontFamily: "Shippori Mincho, serif",
+              }}
+            >
+              {parse("")}
+            </text>
+          </div>
+
+          <MemoImage imageUrl="/darryl-brian-bDn1Wi1ixLw-unsplash.jpg" windowHeight={windowHeight} windowWidth={windowWidth}/>
+        </div>
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            height: Math.max(0, windowHeight * 3 - scrollY),
+            overflow: "hidden",
+          }}
+        >
+          <div
+            style={{
+              position: 'absolute',
+              zIndex: 2,
+              height: windowHeight,
+              width: windowWidth * 0.5,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "end",
+              alignItems: "start",
+              alignSelf: "end",
+              right: 
+                150 -
+                Math.min(
+                  Math.max(
+                    (scrollY - windowHeight * 1.75) / (windowHeight * 0.25),
+                    0
+                  ),
+                  1
+                ) * 100,
+              bottom: 150,
+              opacity: Math.min(
+                Math.max(
+                  (scrollY - windowHeight * 1.75) / (windowHeight * 0.5),
+                  0
+                ),
+                1
+              ),
+            }}
+          >
+            <div style={{ marginBottom: 10 }}>
+              <Verify size="24" color="white" />
+              <text
+                style={{
+                  fontSize: 20,
+                  fontWeight: "normal",
+                  color: "white",
+                  fontFamily: "Shippori Mincho, serif",
+                  marginLeft: 10,
+                }}
+              >
+                信頼が得られる
+              </text>
+            </div>
+            <text
+              style={{
+                fontSize: 32,
+                fontWeight: "normal",
+                color: "white",
+                fontFamily: "Shippori Mincho, serif",
+                marginBottom: 20,
+              }}
+            >
+              {parse("高品質なホームページで、お客様から信頼を得られます。")}
+            </text>
+            <text
+              style={{
+                fontSize: 16,
+                fontWeight: "normal",
+                color: "white",
+                fontFamily: "Shippori Mincho, serif",
+              }}
+            >
+              {parse(
+                "ホームページは、ときに会社の顔になり、第一印象を左右するものでもあります。"
+              )}
+            </text>
+            <text
+              style={{
+                fontSize: 16,
+                fontWeight: "normal",
+                color: "white",
+                fontFamily: "Shippori Mincho, serif",
+              }}
+            >
+              {parse(
+                "専属のデザイナーとエンジニアが、あなたのホームページを１から作ります。また、あなたのお店や会社のイメージや、ビジョンについてもぜひお聞かせください。それを踏まえ、私達からホームページを提案させていただければ幸いです。"
+              )}
+            </text>
+          </div>
+
+          <MemoImage imageUrl="/artur-aldyrkhanov-3bwMp-TyxOE-unsplash.jpg" windowHeight={windowHeight} windowWidth={windowWidth}/>
+        </div>
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            height: Math.max(0, windowHeight * 2 - scrollY),
+            overflow: "hidden",
+          }}
+        >
+          <div
+            style={{
+              position: 'absolute',
+              zIndex: 2,
+              height: windowHeight,
+              width: windowWidth * 0.5,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "end",
+              alignItems: "start",
+              left:
                 150 -
                 Math.min(
                   Math.max(
@@ -158,7 +450,7 @@ const Home: NextPage = () => {
                   ),
                   1
                 ) * 100,
-              paddingBottom: 150,
+              bottom: 150,
               opacity: Math.min(
                 Math.max(
                   (scrollY - windowHeight * 0.75) / (windowHeight * 0.5),
@@ -232,316 +524,7 @@ const Home: NextPage = () => {
               )}
             </text>
           </div>
-          {/* window 3 */}
-          <div
-            style={{
-              height: windowHeight,
-              width: windowWidth * 0.5,
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "end",
-              alignItems: "start",
-              alignSelf: "end",
-              marginRight: 
-                150 -
-                Math.min(
-                  Math.max(
-                    (scrollY - windowHeight * 1.75) / (windowHeight * 0.25),
-                    0
-                  ),
-                  1
-                ) * 100,
-              paddingBottom: 150,
-              opacity: Math.min(
-                Math.max(
-                  (scrollY - windowHeight * 1.75) / (windowHeight * 0.5),
-                  0
-                ),
-                1
-              ),
-            }}
-          >
-            <div style={{ marginBottom: 10 }}>
-              <Verify size="24" color="white" />
-              <text
-                style={{
-                  fontSize: 20,
-                  fontWeight: "normal",
-                  color: "white",
-                  fontFamily: "Shippori Mincho, serif",
-                  marginLeft: 10,
-                }}
-              >
-                信頼が得られる
-              </text>
-            </div>
-            <text
-              style={{
-                fontSize: 32,
-                fontWeight: "normal",
-                color: "white",
-                fontFamily: "Shippori Mincho, serif",
-                marginBottom: 20,
-              }}
-            >
-              {parse("高品質なホームページで、お客様から信頼を得られます。")}
-            </text>
-            <text
-              style={{
-                fontSize: 16,
-                fontWeight: "normal",
-                color: "white",
-                fontFamily: "Shippori Mincho, serif",
-              }}
-            >
-              {parse(
-                "ホームページは、ときに会社の顔になり、第一印象を左右するものでもあります。"
-              )}
-            </text>
-            <text
-              style={{
-                fontSize: 16,
-                fontWeight: "normal",
-                color: "white",
-                fontFamily: "Shippori Mincho, serif",
-              }}
-            >
-              {parse(
-                "専属のデザイナーとエンジニアが、あなたのホームページを１から作ります。また、あなたのお店や会社のイメージや、ビジョンについてもぜひお聞かせください。それを踏まえ、私達からホームページを提案させていただければ幸いです。"
-              )}
-            </text>
-          </div>
-          {/* window 4 */}
-          <div
-            style={{
-              height: windowHeight,
-              width: windowWidth * 0.5,
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "end",
-              alignItems: "start",
-              alignSelf: "start",
-              marginLeft: 
-                150 -
-                Math.min(
-                  Math.max(
-                    (scrollY - windowHeight * 2.75) / (windowHeight * 0.25),
-                    0
-                  ),
-                  1
-                ) * 100,
-              paddingBottom: 150,
-              opacity: Math.min(
-                Math.max(
-                  (scrollY - windowHeight * 2.75) / (windowHeight * 0.5),
-                  0
-                ),
-                1
-              ),
-            }}
-          >
-            <div style={{ marginBottom: 10 }}>
-              <Edit size="24" color="white" />
-              <text
-                style={{
-                  fontSize: 20,
-                  fontWeight: "normal",
-                  color: "white",
-                  fontFamily: "Shippori Mincho, serif",
-                  marginLeft: 10,
-                }}
-              >
-                自由に内容を編集できる
-              </text>
-            </div>
-            <text
-              style={{
-                fontSize: 32,
-                fontWeight: "normal",
-                color: "white",
-                fontFamily: "Shippori Mincho, serif",
-                marginBottom: 20,
-              }}
-            >
-              {parse("あなた自身で、ホームページの内容を編集できます。")}
-            </text>
-            <text
-              style={{
-                fontSize: 16,
-                fontWeight: "normal",
-                color: "white",
-                fontFamily: "Shippori Mincho, serif",
-              }}
-            >
-              {parse(
-                "ホームページの内容を、あなた自身で、簡単に編集することが可能です。"
-              )}
-            </text>
-            <text
-              style={{
-                fontSize: 16,
-                fontWeight: "normal",
-                color: "white",
-                fontFamily: "Shippori Mincho, serif",
-              }}
-            >
-              {parse(
-                "ブログのように、コンテンツを追加していくことで、ますますあなたらしく、ホームページを彩ってください。"
-              )}
-            </text>
-            <text
-              style={{
-                fontSize: 16,
-                fontWeight: "normal",
-                color: "white",
-                fontFamily: "Shippori Mincho, serif",
-              }}
-            >
-              {parse("")}
-            </text>
-          </div>
-          {/* window 5 */}
-          <div
-            style={{
-              height: windowHeight,
-              width: windowWidth * 0.5,
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "end",
-              alignItems: "start",
-              alignSelf: "end",
-              marginRight: 
-                150 -
-                Math.min(
-                  Math.max(
-                    (scrollY - windowHeight * 3.75) / (windowHeight * 0.25),
-                    0
-                  ),
-                  1
-                ) * 100,
-              paddingBottom: 150,
-              opacity: Math.min(
-                Math.max(
-                  (scrollY - windowHeight * 3.75) / (windowHeight * 0.5),
-                  0
-                ),
-                1
-              ),
-            }}
-          >
-            <div style={{ marginBottom: 10 }}>
-              <KeyboardOpen size="24" color="white" />
-              <text
-                style={{
-                  fontSize: 20,
-                  fontWeight: "normal",
-                  color: "white",
-                  fontFamily: "Shippori Mincho, serif",
-                  marginLeft: 10,
-                }}
-              >
-                ホームページに限りません
-              </text>
-            </div>
-            <text
-              style={{
-                fontSize: 32,
-                fontWeight: "normal",
-                color: "white",
-                fontFamily: "Shippori Mincho, serif",
-                marginBottom: 20,
-              }}
-            >
-              {parse("モバイルアプリやECサイトなども、ご相談ください")}
-            </text>
-            <text
-              style={{
-                fontSize: 16,
-                fontWeight: "normal",
-                color: "white",
-                fontFamily: "Shippori Mincho, serif",
-              }}
-            >
-              {parse(
-                "ホームページを作り、集客がうまくいき、専用のモバイルアプリやECサイトが作りたくなるかもしれません。そんなときも、私達に任せてください。"
-              )}
-            </text>
-            <text
-              style={{
-                fontSize: 16,
-                fontWeight: "normal",
-                color: "white",
-                fontFamily: "Shippori Mincho, serif",
-              }}
-            >
-              {parse(
-                "モバイルアプリ開発やECサイト制作の経験のある、私達のデザイナーやエンジニアが、あなたのビジネスを加速させるお手伝いをいたします。"
-              )}
-            </text>
-          </div>
-          {/* footer */}
-          <div
-            style={{
-              position: "relative",
-              height: 250,
-              width: "100%",
-              bottom: 0,
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              backgroundColor: "black",
-            }}
-          >
-            <text
-              style={{
-                fontSize: 24,
-                fontWeight: "bold",
-                color: "white",
-                fontFamily: "Shippori Mincho, serif",
-              }}
-            >
-              SUGOI株式会社
-            </text>
-          </div>
-        </div>
-        <div
-          style={{
-            position: "fixed",
-            top: 0,
-            height: Math.max(0, windowHeight * 5 - scrollY),
-            overflow: "hidden",
-          }}
-        >
-          <MemoImage imageUrl="/philipp-katzenberger-iIJrUoeRoCQ-unsplash.jpg" windowHeight={windowHeight} windowWidth={windowWidth}/>
-        </div>
-        <div
-          style={{
-            position: "fixed",
-            top: 0,
-            height: Math.max(0, windowHeight * 4 - scrollY),
-            overflow: "hidden",
-          }}
-        >
-          <MemoImage imageUrl="/darryl-brian-bDn1Wi1ixLw-unsplash.jpg" windowHeight={windowHeight} windowWidth={windowWidth}/>
-        </div>
-        <div
-          style={{
-            position: "fixed",
-            top: 0,
-            height: Math.max(0, windowHeight * 3 - scrollY),
-            overflow: "hidden",
-          }}
-        >
-          <MemoImage imageUrl="/artur-aldyrkhanov-3bwMp-TyxOE-unsplash.jpg" windowHeight={windowHeight} windowWidth={windowWidth}/>
-        </div>
-        <div
-          style={{
-            position: "fixed",
-            top: 0,
-            height: Math.max(0, windowHeight * 2 - scrollY),
-            overflow: "hidden",
-          }}
-        >
+
           <MemoImage imageUrl="/david-van-dijk-3LTht2nxd34-unsplash.jpg" windowHeight={windowHeight} windowWidth={windowWidth}/>
         </div>
         <div
@@ -552,7 +535,35 @@ const Home: NextPage = () => {
             overflow: "hidden",
           }}
         >
-          <div style={{position: 'absolute', zIndex: 1, height: '100%', width: '100%'}}><text style={{ color: 'white', position: 'absolute', bottom: 150}}>test</text></div>
+          <div
+            style={{
+              position: 'absolute',
+              zIndex: 2,
+              height: windowHeight,
+              width: windowWidth,
+              display: "flex",
+              justifyContent: 'center',
+              alignItems: "center",
+              opacity: Math.min(
+                Math.max(
+                  1 - scrollY * 2 / windowHeight,
+                  0
+                ),
+              1),
+              bottom: 0
+            }}
+          >
+            <text
+              style={{
+                fontSize: 40,
+                fontWeight: "bold",
+                color: "white",
+                fontFamily: "Shippori Mincho, serif",
+              }}
+            >
+              ホームページ作成、どこも高くない？
+            </text>
+          </div>
           <MemoImage imageUrl="/sebastian-svenson-LpbyDENbQQg-unsplash.jpg" windowHeight={windowHeight} windowWidth={windowWidth}/>
         </div>
       </main>
