@@ -38,29 +38,6 @@ const MemoImage = React.memo((props) => {
   )
 })
 
-const DetailBanner = (props) => {
-  const [ isHoverd, setIsHoverd ] = useState(false)
-
-  return (
-    <div style={{ marginTop: 40, width: '100%' }} onMouseEnter={() => setIsHoverd(true)} onMouseLeave={() => setIsHoverd(false)} >
-      <text
-        style={{
-          fontSize: 18,
-          fontWeight: "normal",
-          color: "white",
-          fontFamily: "Shippori Mincho, serif",
-          opacity: isHoverd ? 1 : 0.5
-        }}
-      >
-        詳しく見る
-      </text>
-      <div style={{ height: 2, width: '60%', background: 'rgba(255, 255, 255, 0.2)', marginTop: 15 }}>
-        <div style={{ height: 2, width: '15%', background: 'white', position: 'absolute' }} />
-      </div>
-    </div>
-  )
-}
-
 const Home: NextPage = () => {
   const [scrollY, setScrollY] = useState(0);
   const [windowHeight, setWindowHeight] = useState(0);
@@ -250,8 +227,8 @@ const Home: NextPage = () => {
                 "モバイルアプリ開発やECサイト制作の経験のある、私達のデザイナーやエンジニアが、あなたのビジネスを加速させるお手伝いをいたします。"
               )}
             </text>
-            <DetailBanner />
           </div>
+
           <MemoImage imageUrl="/philipp-katzenberger-iIJrUoeRoCQ-unsplash.jpg" windowHeight={windowHeight} windowWidth={windowWidth}/>
         </div>
         <div
@@ -351,8 +328,8 @@ const Home: NextPage = () => {
             >
               {parse("")}
             </text>
-            <DetailBanner />
           </div>
+
           <MemoImage imageUrl="/darryl-brian-bDn1Wi1ixLw-unsplash.jpg" windowHeight={windowHeight} windowWidth={windowWidth}/>
         </div>
         <div
@@ -442,8 +419,8 @@ const Home: NextPage = () => {
                 "専属のデザイナーとエンジニアが、あなたのホームページを１から作ります。また、あなたのお店や会社のイメージや、ビジョンについてもぜひお聞かせください。それを踏まえ、私達からホームページを提案させていただければ幸いです。"
               )}
             </text>
-            <DetailBanner />
           </div>
+
           <MemoImage imageUrl="/artur-aldyrkhanov-3bwMp-TyxOE-unsplash.jpg" windowHeight={windowHeight} windowWidth={windowWidth}/>
         </div>
         <div
@@ -546,7 +523,19 @@ const Home: NextPage = () => {
                 "また、最初はお金がたくさんかかると思います。あなたのビジネスが軌道に乗ってきてから、費用はお支払いいただければけっこうです。月々3,000円から、サブスク型でホームページの作成を請け負います。"
               )}
             </text>
-            <DetailBanner />
+            <text
+              style={{
+                fontSize: 20,
+                fontWeight: "normal",
+                color: "white",
+                fontFamily: "Shippori Mincho, serif",
+                marginTop: 30 
+              }}
+            >
+              {parse("詳しく見る")}
+            </text>
+            <div style={{ height: 2, width: '100%', background: 'white', marginTop: 15 }}/>
+            <div />
           </div>
           <MemoImage imageUrl="/david-van-dijk-3LTht2nxd34-unsplash.jpg" windowHeight={windowHeight} windowWidth={windowWidth}/>
         </div>
