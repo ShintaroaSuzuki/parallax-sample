@@ -6,11 +6,16 @@ import React, { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
 import { EmptyWallet, Verify, Edit, KeyboardOpen } from "iconsax-react";
 import { useBudouX } from "../hooks/useBudouX";
+import { motion } from "framer-motion"
 
 type MemoImageProps = {
   windowHeight: number;
   windowWidth: number;
   imageUrl: string;
+}
+
+type DetailBannerProps = {
+  href: string;
 }
 
 const MemoImage = React.memo(function memoImageComponent(props: MemoImageProps) {
@@ -30,11 +35,11 @@ const MemoImage = React.memo(function memoImageComponent(props: MemoImageProps) 
   )
 })
 
-const DetailBanner = () => {
+const DetailBanner = (props: DetailBannerProps) => {
   const [ isHoverd, setIsHoverd ] = useState(false)
 
   return (
-    <Link href="/price" passHref>
+    <Link href={props.href} passHref>
     <div style={{ marginTop: 40, width: '100%' }} onMouseEnter={() => setIsHoverd(true)} onMouseLeave={() => setIsHoverd(false)} >
       <text
         style={{
@@ -49,7 +54,10 @@ const DetailBanner = () => {
         詳しく見る
       </text>
       <div style={{ height: 2, width: '60%', background: 'rgba(255, 255, 255, 0.2)', marginTop: 15 }}>
-        <div style={{ height: 2, width: isHoverd ? '60%' : '15%', background: 'white', position: 'absolute' }} />
+        <motion.div
+          style={{ height: 2,  background: 'white', position: 'absolute' }} 
+          animate={{ width: isHoverd ? '60%' : '15%' }}
+        />
       </div>
     </div>
     </Link>
@@ -214,7 +222,7 @@ const Home: NextPage = () => {
                 "モバイルアプリ開発やECサイト制作の経験のある、私達のデザイナーやエンジニアが、あなたのビジネスを加速させるお手伝いをいたします。"
               )}
             </text>
-            <DetailBanner />
+            <DetailBanner href="/others"/>
           </div>
           <MemoImage imageUrl="/philipp-katzenberger-iIJrUoeRoCQ-unsplash.jpg" windowHeight={windowHeight} windowWidth={windowWidth}/>
         </div>
@@ -315,7 +323,7 @@ const Home: NextPage = () => {
             >
               {parse("")}
             </text>
-            <DetailBanner />
+            <DetailBanner href="/flexibility"/>
           </div>
           <MemoImage imageUrl="/darryl-brian-bDn1Wi1ixLw-unsplash.jpg" windowHeight={windowHeight} windowWidth={windowWidth}/>
         </div>
@@ -406,7 +414,7 @@ const Home: NextPage = () => {
                 "専属のデザイナーとエンジニアが、あなたのホームページを１から作ります。また、あなたのお店や会社のイメージや、ビジョンについてもぜひお聞かせください。それを踏まえ、私達からホームページを提案させていただければ幸いです。"
               )}
             </text>
-            <DetailBanner />
+            <DetailBanner href="quality"/>
           </div>
           <MemoImage imageUrl="/artur-aldyrkhanov-3bwMp-TyxOE-unsplash.jpg" windowHeight={windowHeight} windowWidth={windowWidth}/>
         </div>
@@ -510,7 +518,7 @@ const Home: NextPage = () => {
                 "また、最初はお金がたくさんかかると思います。あなたのビジネスが軌道に乗ってきてから、費用はお支払いいただければけっこうです。月々3,000円から、サブスク型でホームページの作成を請け負います。"
               )}
             </text>
-            <DetailBanner />
+            <DetailBanner href="/price"/>
           </div>
           <MemoImage imageUrl="/david-van-dijk-3LTht2nxd34-unsplash.jpg" windowHeight={windowHeight} windowWidth={windowWidth}/>
         </div>
