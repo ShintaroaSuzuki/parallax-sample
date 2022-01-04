@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
-import { EmptyWallet, Verify, Edit, KeyboardOpen } from "iconsax-react";
+import { EmptyWallet, Verify, Edit, KeyboardOpen, Messages1, ArrowRight2 } from "iconsax-react";
 import { useBudouX } from "../hooks/useBudouX";
 import { motion } from "framer-motion"
 
@@ -36,18 +36,18 @@ const MemoImage = React.memo(function memoImageComponent(props: MemoImageProps) 
 })
 
 const DetailBanner = (props: DetailBannerProps) => {
-  const [ isHoverd, setIsHoverd ] = useState(false)
+  const [ isHovered, setIsHovered ] = useState(false)
 
   return (
     <Link href={props.href} passHref>
-    <div style={{ marginTop: 40, width: '100%' }} onMouseEnter={() => setIsHoverd(true)} onMouseLeave={() => setIsHoverd(false)} >
+    <div style={{ marginTop: 40, width: '100%' }} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} >
       <text
         style={{
           fontSize: 18,
           fontWeight: "normal",
           color: "white",
           fontFamily: "Shippori Mincho, serif",
-          opacity: isHoverd ? 1 : 0.5
+          opacity: isHovered ? 1 : 0.5
         }}
         href="/price"
       >
@@ -55,11 +55,39 @@ const DetailBanner = (props: DetailBannerProps) => {
       </text>
       <div style={{ height: 2, width: '60%', background: 'rgba(255, 255, 255, 0.2)', marginTop: 15 }}>
         <motion.div
-          style={{ height: 2,  background: 'white', position: 'absolute' }} 
-          animate={{ width: isHoverd ? '60%' : '15%' }}
+          style={{ height: 2, background: 'white', position: 'absolute' }} 
+          animate={{ width: isHovered ? '60%' : '15%' }}
         />
       </div>
     </div>
+    </Link>
+  )
+}
+
+const ApplyButton = () => {
+  const [ isHovered, setIsHovered ] = useState(false)
+
+  return (
+    <Link href="/inquiry" passHref>
+      <motion.div 
+        style={{ 
+          backgroundColor: "#319fc4", 
+          display: "flex", 
+          justifyContent: "center", 
+          alignItems: "center", 
+          borderRadius: 100 
+        }}
+        animate={{
+          width: isHovered ? 300 * 1.2 : 300,
+          height: isHovered ? 80 * 1.2 : 80
+        }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <Messages1 size="32" color="white" style={{ marginRight: 12 }} />
+        <text style={{ fontSize: 18, color: "white", fontWeight: "bold", fontFamily: "Shippori Mincho, serif" }}>ご相談はこちらから</text>
+        <ArrowRight2 size="32" color="white" style={{ marginLeft: 6 }} />
+      </motion.div>
     </Link>
   )
 }
@@ -122,18 +150,45 @@ const Home: NextPage = () => {
             justifyContent: "center",
             alignItems: "center",
             backgroundColor: "black",
+            flexDirection: "column"
           }}
         >
-          <text
+          <div
             style={{
-              fontSize: 24,
-              fontWeight: "bold",
-              color: "white",
-              fontFamily: "Shippori Mincho, serif",
+              position: "absolute",
+              top: 0,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: 250 - 40,
+              width: "100%"
             }}
           >
-            SUGOI株式会社
-          </text>
+            <ApplyButton />
+          </div>
+          <div
+            style={{
+              position: "absolute",
+              bottom: 0,
+              backgroundColor: "#333333",
+              width: "100%",
+              height: 40,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center"
+            }}
+          >
+            <text 
+              style={{
+                fontSize: 14,
+                fontWeight: "bold",
+                color: "white",
+                fontFamily: "Shippori Mincho, serif",
+              }}
+            >
+              SUGOI株式会社
+            </text>
+          </div>
         </div>
         <div
           style={{
