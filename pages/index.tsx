@@ -40,26 +40,26 @@ const DetailBanner = (props: DetailBannerProps) => {
 
   return (
     <Link href={props.href} passHref>
-    <div style={{ marginTop: 40, width: '100%' }} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} >
-      <text
-        style={{
-          fontSize: 18,
-          fontWeight: "normal",
-          color: "white",
-          fontFamily: "Shippori Mincho, serif",
-          opacity: isHovered ? 1 : 0.5
-        }}
-        href="/price"
-      >
-        詳しく見る
-      </text>
-      <div style={{ height: 2, width: '60%', background: 'rgba(255, 255, 255, 0.2)', marginTop: 15 }}>
-        <motion.div
-          style={{ height: 2, background: 'white', position: 'absolute' }} 
-          animate={{ width: isHovered ? '60%' : '15%' }}
-        />
+      <div style={{ marginTop: 40, width: '100%' }} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} >
+        <text
+          style={{
+            fontSize: 18,
+            fontWeight: "normal",
+            color: "white",
+            fontFamily: "Shippori Mincho, serif",
+            opacity: isHovered ? 1 : 0.5
+          }}
+          href="/price"
+        >
+          詳しく見る
+        </text>
+        <div style={{ height: 2, width: '60%', background: 'rgba(255, 255, 255, 0.2)', marginTop: 15 }}>
+          <motion.div
+            style={{ height: 2, background: 'white', position: 'absolute' }} 
+            animate={{ width: isHovered ? '60%' : '15%' }}
+          />
+        </div>
       </div>
-    </div>
     </Link>
   )
 }
