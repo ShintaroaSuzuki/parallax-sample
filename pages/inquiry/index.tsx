@@ -1,5 +1,5 @@
-import { useState } from 'react'
 import Link from "next/link";
+import { ButtonHTMLAttributes } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { selectForm, changeName, changeMailAddress, changeInquiry } from '../../store/formState'
 
@@ -7,8 +7,16 @@ const Page = () => {
   const { name, mailAddress, inquiry } = useSelector(selectForm)
   const dispatch = useDispatch();
 
+  const submitForm = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    const res = await fetch('/api/notion', {
+      method: 'POST',
+      body: JSON.stringify({ name, mailAddress, inquiry })
+    })
+  }
+
   return (
-    <div>
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
       <div>
         <text>お問い合わせフォーム</text>
       </div>
@@ -24,11 +32,11 @@ const Page = () => {
         <text>お問い合わせ</text>
         <input type="text" value={inquiry} onChange={(e) => dispatch(changeInquiry(e.target.value))}/>
       </div>
-      <Link href="/" passHref>
-        <div>
+      <div>
+        <button onClick={submitForm} style={{ padding: 10, backgroundColor: '#eeeeee' }}>
           <text>送信する</text>
-        </div>
-      </Link>
+        </button>
+      </div>
     </div>
   )
 }

@@ -8,11 +8,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@notionhq/client": "^0.4.11",
     "@reduxjs/toolkit": "^1.7.1",
     "@types/react-redux": "^7.1.21",
     "budoux": "^0.0.3",
     "framer-motion": "^5.5.5",
     "iconsax-react": "^0.0.7",
+    "moment": "^2.29.1",
     "next": "12.0.4",
     "plaiceholder": "^2.2.0",
     "react": "17.0.2",
