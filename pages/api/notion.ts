@@ -1,5 +1,5 @@
 import { Client } from '@notionhq/client'
-import type { NextApiRequest, NextApiResponse } from 'next'
+import { NextApiRequest, NextApiResponse } from 'next'
 
 const notion = new Client({
   auth: 'secret_L1FNadtJlkQiaKQ3S79qaLiYgTFId4NHLjpEJP53ZDe',
@@ -15,7 +15,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const { name, mailAddress, inquiry } = JSON.parse(req.body)
       const title = name;
 
-      await notion.pages.create({
+      const response = await notion.pages.create({
           parent: { database_id: '58b095bfbe3746649ba058d4b32ca18f' },
           properties: {
               '氏名': {
@@ -35,7 +35,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
               'ステータス': {
                   type: 'select',
                   select: {
-                    name: 'リード',
+                    name: '未対応',
                     color: 'purple'
                   }
               }
@@ -70,8 +70,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
               }
           ]
       });
-      res.status(201).json({ msg: 'Success'})
+      res.status(201).json({ msg: 'Success' })
     } catch (error) {
-      res.status(500).json({ msg: 'There was an error'})
+      res.status(500).json({ msg: 'There was an error' })
     }
 }

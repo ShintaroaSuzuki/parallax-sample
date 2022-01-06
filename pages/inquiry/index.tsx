@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ButtonHTMLAttributes } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { selectForm, changeName, changeMailAddress, changeInquiry } from '../../store/formState'
 
@@ -8,11 +7,17 @@ const Page = () => {
   const dispatch = useDispatch();
 
   const submitForm = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault()
-    const res = await fetch('/api/notion', {
-      method: 'POST',
-      body: JSON.stringify({ name, mailAddress, inquiry })
-    })
+    if (!!name && !!mailAddress) {
+      e.preventDefault()
+      await fetch('/api/notion', {
+        method: 'POST',
+        body: JSON.stringify({ name, mailAddress, inquiry })
+      })
+      await fetch('api/discord', {
+        method: 'POST',
+        body: JSON.stringify({ name })
+      })
+    }
   }
 
   return (
@@ -31,6 +36,9 @@ const Page = () => {
        <div>
         <text>お問い合わせ</text>
         <input type="text" value={inquiry} onChange={(e) => dispatch(changeInquiry(e.target.value))}/>
+      </div>
+      <div>
+        <text>{(!!name && !!mailAddress) ? 'OK' : '必須項目が足りません'}</text>
       </div>
       <div>
         <button onClick={submitForm} style={{ padding: 10, backgroundColor: '#eeeeee' }}>

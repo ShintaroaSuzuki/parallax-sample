@@ -12,6 +12,7 @@
     "@reduxjs/toolkit": "^1.7.1",
     "@types/react-redux": "^7.1.21",
     "budoux": "^0.0.3",
+    "discord.js": "^13.5.0",
     "framer-motion": "^5.5.5",
     "iconsax-react": "^0.0.7",
     "moment": "^2.29.1",
