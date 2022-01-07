@@ -2,14 +2,13 @@ import { Client } from '@notionhq/client'
 import { NextApiRequest, NextApiResponse } from 'next'
 require('dotenv').config()
 
+const notion = new Client({
+  auth: process.env.NOTION_TOKEN,
+})
+
+const notionDatabaseId = process.env.NOTION_DATABASE_ID as string
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const notion = new Client({
-    auth: process.env.NOTION_TOKEN,
-  })
-
-  const notionDatabaseId = process.env.NOTION_DATABASE_ID as string
-
-
   if (req.method !== 'POST') {
     return res
       .status(405)
