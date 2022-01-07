@@ -2,11 +2,14 @@ import { Client } from '@notionhq/client'
 import { NextApiRequest, NextApiResponse } from 'next'
 require('dotenv').config()
 
-const notion = new Client({
-  auth: process.env.NOTION_TOKEN,
-})
-
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  const notion = new Client({
+    auth: process.env.NOTION_TOKEN,
+  })
+
+  const notionDatabaseId = process.env.NOTION_DATABASE_ID as string
+
+
   if (req.method !== 'POST') {
     return res
       .status(405)
@@ -17,7 +20,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const title = name;
 
       await notion.pages.create({
-          parent: { database_id: '58b095bfbe3746649ba058d4b32ca18f' },
+          parent: { database_id: notionDatabaseId },
           properties: {
               '氏名': {
                   type: 'title',

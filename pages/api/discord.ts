@@ -17,8 +17,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         content: '@everyone',
         embeds: [{
           title: `お問い合わせがありました`,
-          description: `氏名: ${name}\nメールアドレス: ${mailAddress}` 
-            + ((!!inquiry) ? `\nお問い合わせ内容: ${inquiry}` : '')
+          description: `氏名: ${name}\nメールアドレス: ${mailAddress}\nお問い合わせ内容: ` 
+            + ((!!inquiry) ? `${inquiry}` : 'なし')
             + '\n\n[お問い合わせリスト](https://www.notion.so/shintaroa/58b095bfbe3746649ba058d4b32ca18f?v=e22824636f0d4a02bc8649f4cf29c743)から確認してください'
         }],
         allowed_mentions: { parse: ['everyone'] }
