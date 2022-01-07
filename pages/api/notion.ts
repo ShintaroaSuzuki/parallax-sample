@@ -1,8 +1,9 @@
 import { Client } from '@notionhq/client'
 import { NextApiRequest, NextApiResponse } from 'next'
+require('dotenv').config()
 
 const notion = new Client({
-  auth: 'secret_L1FNadtJlkQiaKQ3S79qaLiYgTFId4NHLjpEJP53ZDe',
+  auth: process.env.NOTION_TOKEN,
 })
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -15,7 +16,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const { name, mailAddress, inquiry } = JSON.parse(req.body)
       const title = name;
 
-      const response = await notion.pages.create({
+      await notion.pages.create({
           parent: { database_id: '58b095bfbe3746649ba058d4b32ca18f' },
           properties: {
               '氏名': {

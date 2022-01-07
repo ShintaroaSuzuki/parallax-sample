@@ -13,9 +13,9 @@ const Page = () => {
         method: 'POST',
         body: JSON.stringify({ name, mailAddress, inquiry })
       })
-      await fetch('api/discord', {
+      fetch('api/discord', {
         method: 'POST',
-        body: JSON.stringify({ name })
+        body: JSON.stringify({ name, mailAddress, inquiry })
       })
     }
   }
