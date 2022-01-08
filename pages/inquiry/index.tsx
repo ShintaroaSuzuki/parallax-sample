@@ -9,10 +9,12 @@ const Page = () => {
   const submitForm = async (e: React.MouseEvent<HTMLButtonElement>) => {
     if (!!name && !!mailAddress) {
       e.preventDefault()
-      await fetch('/api/notion', {
+      const response = await fetch('/api/notion', {
         method: 'POST',
         body: JSON.stringify({ name, mailAddress, inquiry })
       })
+      const data = await response.json();
+      console.log(data)
       fetch('api/discord', {
         method: 'POST',
         body: JSON.stringify({ name, mailAddress, inquiry })
