@@ -1,0 +1,14 @@
+.container {
+  width: 6rem;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1F70FF;
+  border-radius: .4rem;
+}
+
+.text {
+  color: #fff;
+  padding: 1rem;
+}

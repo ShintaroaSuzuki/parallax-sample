@@ -1,12 +1,16 @@
 import Link from "next/link";
 import { useSelector, useDispatch } from 'react-redux'
 import { selectForm, changeName, changeMailAddress, changeInquiry } from '../../store/formState'
+import styles from '../../styles/Inquiry.module.css'
+import InputForm from '../../components/InputForm'
+import TextAreaForm from '../../components/TextAreaForm'
+import Button from '../../components/Button'
 
 const Page = () => {
   const { name, mailAddress, inquiry } = useSelector(selectForm)
   const dispatch = useDispatch();
 
-  const submitForm = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  const submitForm = async (e: React.MouseEvent<HTMLDivElement>) => {
     if (!!name && !!mailAddress) {
       e.preventDefault()
       const response = await fetch('/api/notion', {
@@ -23,30 +27,14 @@ const Page = () => {
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column' }}>
-      <div>
-        <text>お問い合わせフォーム</text>
-      </div>
-      <div>
-        <text>お名前</text>
-        <input type="text" value={name} onChange={(e) => dispatch(changeName(e.target.value))}/>
-      </div>
-      <div>
-        <text>メールアドレス</text>
-        <input type="text" value={mailAddress} onChange={(e) => dispatch(changeMailAddress(e.target.value))}/>
-      </div>
-       <div>
-        <text>お問い合わせ</text>
-        <input type="text" value={inquiry} onChange={(e) => dispatch(changeInquiry(e.target.value))}/>
-      </div>
-      <div>
+    <div className={styles.container}>
+      <InputForm title="お名前" value={name} onChange={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeName(e.target.value))} />
+      <InputForm title="メールアドレス" value={mailAddress} onChange={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeMailAddress(e.target.value))} />
+      <TextAreaForm title="お問い合わせ" value={inquiry} onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => dispatch(changeInquiry(e.target.value))} />
+      <div style={{ marginBottom: 48 }}>
         <text>{(!!name && !!mailAddress) ? 'OK' : '必須項目が足りません'}</text>
       </div>
-      <div>
-        <button onClick={submitForm} style={{ padding: 10, backgroundColor: '#eeeeee' }}>
-          <text>送信する</text>
-        </button>
-      </div>
+      <Button onClick={submitForm} />
     </div>
   )
 }

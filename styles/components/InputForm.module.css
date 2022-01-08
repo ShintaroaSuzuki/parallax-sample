@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 40rem;
+  margin-bottom: 48px;
+}
+
+.title {
+}
+
+.input {
+  border-width: 0px;
+}
