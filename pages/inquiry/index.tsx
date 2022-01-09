@@ -31,7 +31,7 @@ const Page = () => {
       <InputForm title="お名前" value={name} onChange={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeName(e.target.value))} />
       <InputForm title="メールアドレス" value={mailAddress} onChange={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(changeMailAddress(e.target.value))} />
       <TextAreaForm title="お問い合わせ" value={inquiry} onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => dispatch(changeInquiry(e.target.value))} />
-      <div style={{ marginBottom: 48 }}>
+      <div style={{ marginBottom: 48, height: 20 }}>
         <text>{(!!name && !!mailAddress) ? 'OK' : '必須項目が足りません'}</text>
       </div>
       <Button onClick={submitForm} />

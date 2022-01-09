@@ -6,8 +6,11 @@
 }
 
 .title {
+  margin-bottom: 4px;
 }
 
 .input {
   border-width: 0px;
+  padding: 8px;
+  border-radius: 4px;
 }
