@@ -108,6 +108,10 @@ const Home: NextPage = () => {
     setWindowWidth(window.innerWidth);
   }
 
+  const useMedia = (maxWidth: number) => {
+    return windowWidth < maxWidth
+  }
+
   useEffect(() => {
     window.addEventListener("scroll", handleScroll, {
       passive: true,
@@ -500,7 +504,7 @@ const Home: NextPage = () => {
                   ),
                   1
                 ) * 100,
-              bottom: 150,
+              bottom: useMedia(600) ? 80 : 150,
               opacity: Math.min(
                 Math.max(
                   (scrollY - windowHeight * 0.75) / (windowHeight * 0.5),
@@ -511,10 +515,10 @@ const Home: NextPage = () => {
             }}
           >
             <div style={{ marginBottom: 10 }}>
-              <EmptyWallet size="24" color="white" />
+              <EmptyWallet size={useMedia(600) ? 16 : 24} color="white" />
               <text
                 style={{
-                  fontSize: 20,
+                  fontSize: useMedia(600) ? 14 : 20,
                   fontWeight: "normal",
                   color: "white",
                   fontFamily: "Shippori Mincho, serif",
@@ -526,7 +530,7 @@ const Home: NextPage = () => {
             </div>
             <text
               style={{
-                fontSize: 32,
+                fontSize: useMedia(600) ? 18 : 32,
                 fontWeight: "normal",
                 color: "white",
                 fontFamily: "Shippori Mincho, serif",
@@ -539,7 +543,7 @@ const Home: NextPage = () => {
             </text>
             <text
               style={{
-                fontSize: 16,
+                fontSize: useMedia(600) ? 12 : 16,
                 fontWeight: "normal",
                 color: "white",
                 fontFamily: "Shippori Mincho, serif",
@@ -551,7 +555,7 @@ const Home: NextPage = () => {
             </text>
             <text
               style={{
-                fontSize: 16,
+                fontSize: useMedia(600) ? 12 : 16,
                 fontWeight: "normal",
                 color: "white",
                 fontFamily: "Shippori Mincho, serif",
@@ -563,7 +567,7 @@ const Home: NextPage = () => {
             </text>
             <text
               style={{
-                fontSize: 16,
+                fontSize: useMedia(600) ? 12 : 16,
                 fontWeight: "normal",
                 color: "white",
                 fontFamily: "Shippori Mincho, serif",
@@ -605,13 +609,14 @@ const Home: NextPage = () => {
           >
             <text
               style={{
-                fontSize: 40,
+                fontSize: useMedia(600) ? 24 : 40,
                 fontWeight: "bold",
                 color: "white",
                 fontFamily: "Shippori Mincho, serif",
+                width: useMedia(600) ? '80%' : '100%'
               }}
             >
-              ホームページ作成、どこも高くない？
+              {parse('ホームページ作成って、どこも高くない？')}
             </text>
           </div>
           <MemoImage imageUrl="/sebastian-svenson-LpbyDENbQQg-unsplash.jpg" windowHeight={windowHeight} windowWidth={windowWidth}/>
